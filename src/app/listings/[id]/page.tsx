@@ -14,6 +14,7 @@ import {
   listingHeroImage,
   listingPhotoUrls,
 } from "@/lib/idx/format";
+import { PhotoPlaceholder } from "@/components/listings/PhotoPlaceholder";
 import { agent, brokerage } from "@/lib/site-config";
 
 export const dynamic = "force-dynamic";
@@ -82,16 +83,18 @@ export default async function ListingDetailPage({
         <Container className="pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-8">
-              {hero && (
-                <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+                {hero ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={hero}
                     alt={listingTitle(s)}
                     className="w-full h-full object-cover"
                   />
-                </div>
-              )}
+                ) : (
+                  <PhotoPlaceholder listing={listing} variant="hero" />
+                )}
+              </div>
               {photoUrls.length > 1 && (
                 <div className="mt-3 grid grid-cols-4 md:grid-cols-6 gap-3">
                   {photoUrls.slice(1, 7).map((url, i) => (
