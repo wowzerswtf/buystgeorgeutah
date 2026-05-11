@@ -12,6 +12,7 @@ import {
   listingTitle,
   listingSubtitle,
   listingHeroImage,
+  listingPhotoUrls,
 } from "@/lib/idx/format";
 import { agent, brokerage } from "@/lib/site-config";
 
@@ -71,7 +72,7 @@ export default async function ListingDetailPage({
   if (!listing) notFound();
 
   const s = listing.StandardFields;
-  const photos = (s.Photos ?? []).slice(0, 12);
+  const photoUrls = listingPhotoUrls(listing, 12);
   const hero = listingHeroImage(listing);
 
   return (
@@ -91,22 +92,20 @@ export default async function ListingDetailPage({
                   />
                 </div>
               )}
-              {photos.length > 1 && (
+              {photoUrls.length > 1 && (
                 <div className="mt-3 grid grid-cols-4 md:grid-cols-6 gap-3">
-                  {photos.slice(1, 7).map((p, i) => (
+                  {photoUrls.slice(1, 7).map((url, i) => (
                     <div
-                      key={p.Id ?? i}
+                      key={i}
                       className="aspect-square overflow-hidden rounded-lg bg-white/[0.03] border border-white/[0.06]"
                     >
-                      {p.Uri300 ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={p.Uri300}
-                          alt={p.Caption ?? ""}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : null}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={url}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                     </div>
                   ))}
                 </div>
