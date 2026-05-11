@@ -61,17 +61,6 @@ function SearchBarInner() {
   const [minSqft, setMinSqft] = useState(params.get("minSqft") ?? "");
   const [sortBy, setSortBy] = useState(params.get("sortBy") ?? "newest");
 
-  function reset() {
-    setCity("");
-    setPropertyType("");
-    setMinPrice("");
-    setMaxPrice("");
-    setBeds("");
-    setBaths("");
-    setMinSqft("");
-    setSortBy("newest");
-  }
-
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const q = new URLSearchParams();
@@ -196,14 +185,6 @@ function SearchBarInner() {
 
         <div className="md:col-span-3 col-span-2 flex">
           <button
-            type="button"
-            onClick={reset}
-            disabled={pending}
-            className="px-5 py-3 md:py-0 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 hover:text-white border-r border-white/10 transition disabled:opacity-50"
-          >
-            Reset
-          </button>
-          <button
             type="submit"
             disabled={pending}
             aria-live="polite"
@@ -214,7 +195,7 @@ function SearchBarInner() {
                 <Spinner /> Searching MLS…
               </>
             ) : (
-              <>Search → </>
+              <>Search →</>
             )}
           </button>
         </div>
