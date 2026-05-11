@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/site/Container";
 import { agent, social, assets } from "@/lib/site-config";
 import Image from "next/image";
+import { EmailButton } from "@/components/site/EmailButton";
 
 export function ContactCTA() {
   return (
@@ -60,21 +61,18 @@ export function ContactCTA() {
             </span>
           </a>
 
-          <a
-            href={agent.emailHref}
-            className="group glass rounded-2xl p-8 md:p-10 transition-all"
-          >
-            <span className="tag-lime">Email</span>
+          <div className="group glass rounded-2xl p-8 md:p-10 transition-all flex flex-col">
+            <span className="tag-lime self-start">Email</span>
             <div className="mt-6 display-caps text-xl md:text-2xl text-white break-all">
               {agent.email}
             </div>
             <div className="mt-3 font-mono text-[12px] text-white/55">
               For the long version
             </div>
-            <span className="mt-8 block font-mono text-[11px] uppercase tracking-[0.18em] text-lime-400 opacity-80 group-hover:opacity-100 transition">
-              Open mail app →
-            </span>
-          </a>
+            <div className="mt-8">
+              <EmailButton variant="ghost" label="Open Email →" />
+            </div>
+          </div>
 
           <a
             href={social.instagramBusiness.url}

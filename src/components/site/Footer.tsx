@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { agent, brokerage, social, site } from "@/lib/site-config";
 import { areas } from "@/lib/areas";
+import { EmailButton } from "./EmailButton";
 
 const PRIMARY = [
   { href: "/search", label: "Search Listings" },
@@ -32,9 +33,7 @@ export function Footer() {
               <a href={agent.phoneHref} className="btn-lime">
                 Call Kayden
               </a>
-              <a href={agent.emailHref} className="btn-ghost">
-                Send a message
-              </a>
+              <EmailButton variant="ghost" label="Send a Message" />
             </div>
           </div>
 

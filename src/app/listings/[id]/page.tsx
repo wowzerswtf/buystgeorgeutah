@@ -15,6 +15,7 @@ import {
   listingPhotoUrls,
 } from "@/lib/idx/format";
 import { PhotoPlaceholder } from "@/components/listings/PhotoPlaceholder";
+import { EmailButton } from "@/components/site/EmailButton";
 import { agent, brokerage } from "@/lib/site-config";
 
 export const dynamic = "force-dynamic";
@@ -161,9 +162,7 @@ export default async function ListingDetailPage({
                   <a href={agent.phoneHref} className="btn-lime w-full justify-center">
                     Call {agent.phone}
                   </a>
-                  <a href={agent.emailHref} className="btn-ghost w-full justify-center">
-                    Email Kayden
-                  </a>
+                  <EmailButton variant="ghost" fullWidth label="Email Kayden" />
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-white/[0.08]">
