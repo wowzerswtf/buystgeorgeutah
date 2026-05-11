@@ -17,6 +17,13 @@ export function isIdxConfigured(): boolean {
   return idxConfig.apiKey.length > 0;
 }
 
+// Set NEXT_PUBLIC_IDX_DEMO=1 while testing against Spark's demo dataset.
+// Demo listings aren't from Utah, so when this flag is on we skip the
+// city filter and show a banner explaining what the user is seeing.
+export function isDemoMode(): boolean {
+  return process.env.NEXT_PUBLIC_IDX_DEMO === "1";
+}
+
 // Map our area slugs to MLS city names. Edit if Kayden's MLS uses different
 // canonical names (e.g. "Saint George" vs "St. George").
 export const AREA_TO_MLS_CITY: Record<string, string> = {

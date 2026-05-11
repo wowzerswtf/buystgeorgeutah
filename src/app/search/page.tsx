@@ -6,7 +6,9 @@ import { Container } from "@/components/site/Container";
 import { PageHeader } from "@/components/site/PageHeader";
 import { SearchBar } from "@/components/site/SearchBar";
 import { ListingGrid } from "@/components/listings/ListingGrid";
+import { DemoBanner } from "@/components/listings/DemoBanner";
 import { searchListings } from "@/lib/idx/spark";
+import { isDemoMode } from "@/lib/idx/config";
 import { areas } from "@/lib/areas";
 
 export const metadata: Metadata = {
@@ -65,6 +67,7 @@ export default async function SearchPage({
 
         <section className="bg-[#0a0a0a] pb-24 md:pb-32">
           <Container>
+            {isDemoMode() && configured && <DemoBanner />}
             <ListingGrid
               listings={listings}
               configured={configured}

@@ -1,7 +1,7 @@
 // Spark API client (Flexmls/FBS). Server-side only.
 // Docs: https://sparkapi.docs.apiary.io/
 
-import { idxConfig, isIdxConfigured, AREA_TO_MLS_CITY } from "./config";
+import { idxConfig, isIdxConfigured, isDemoMode, AREA_TO_MLS_CITY } from "./config";
 import type {
   SparkListing,
   SparkListResponse,
@@ -14,7 +14,9 @@ function buildFilter(q: ListingsQuery): string {
   // Always require active status unless caller overrides
   clauses.push(`StandardStatus Eq '${q.status ?? "Active"}'`);
 
-  if (q.city && AREA_TO_MLS_CITY[q.city]) {
+  // Skip city filter in demo mode — demo data isn't from Utah, so filtering
+  // by a Utah city name would always return zero results.
+  if (!isDemoMode() && q.city && AREA_TO_MLS_CITY[q.city]) {
     clauses.push(`City Eq '${AREA_TO_MLS_CITY[q.city]}'`);
   }
   if (q.minPrice && Number.isFinite(q.minPrice)) {
