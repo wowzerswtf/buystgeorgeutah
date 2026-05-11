@@ -90,13 +90,16 @@ export async function searchListings(
   if (!isIdxConfigured()) {
     return { listings: [], total: 0, configured: false };
   }
+  // Spark API:
+  //   _pagination=1 returns Results AND pagination metadata (count alone hides Results)
+  //   _expand on /listings list only supports a subset; Photos must be fetched on the detail endpoint
   const params = {
     _filter: buildFilter(q),
     _orderby: buildOrderBy(q.sortBy),
     _limit: q.limit ?? 24,
     _page: q.page ?? 1,
-    _pagination: "count",
-    _expand: "PrimaryPhoto,Photos",
+    _pagination: 1,
+    _expand: "PrimaryPhoto",
   };
   const data = await sparkFetch<SparkListing>("/listings", params);
   return {
