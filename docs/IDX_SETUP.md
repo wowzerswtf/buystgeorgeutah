@@ -4,23 +4,38 @@ This site is wired to **Spark API** — the modern REST/JSON IDX feed used by Fl
 
 ## Activation steps
 
-### 1. Kayden registers a Spark API application
+### 1. Register a Spark Developer account (one-time)
 
-1. Log into **flexmls.com** with his agent credentials.
-2. Navigate to **My Account → Developer / Spark API** (sometimes labeled "IDX Settings" or "API Access" — the menu varies by MLS).
-3. Click **"Register a new application"** or **"Create new API key"**.
-4. Fill in:
+Spark API credentials are issued to a **developer account**, which is separate from Kayden's agent flexmls.com login.
+
+1. Visit **https://sparkplatform.com/register/developers**
+2. Complete the free registration. Activation takes up to 3 business days.
+3. Once activated, log in at **https://sparkplatform.com/ticket** with the developer credentials.
+
+### 2. Enroll in an IDX Data Plan via the Datamart
+
+API credentials are not generated from a "+ New App" button — they're issued after enrolling in an MLS's IDX data plan. The flow:
+
+1. Go to **https://sparkplatform.com/appstore/datamart** (or click "Datamart" in the top-left nav).
+2. **Search for the MLS** — `WFRMLS`, `Washington County Board of Realtors`, or `UtahRealEstate.com`.
+3. Find a plan with role **"IDX"** (not VOW, not Reso Public).
+4. Click **"Enroll"**.
+5. Fill in the application:
 
    | Field | Value |
    |---|---|
    | **App name** | `Buy St. George Utah` |
    | **Website URL** | `https://buystgeorgeutah.com` |
-   | **Redirect URI** | `https://buystgeorgeutah.com/api/idx/callback` |
-   | **Type / Scope** | **IDX** (public listing display) |
    | **Brokerage** | Element Real Estate Brokers LLC |
+   | **Agent** | Kayden Palmer, UT License #11641681-SA |
 
-5. Submit the application. If broker authorization is required, Spark emails Element's broker a one-click approval form.
-6. Wait for approval — typically **same-day for IDX-only**, 24–48 hours otherwise.
+6. Submit. The MLS admin (not Spark) reviews and approves via email — typically **24–72 hrs** for IDX.
+7. Spark emails the **API credentials** (bearer key or OAuth client ID/secret) once approved.
+
+### 3. If the Datamart doesn't list the right MLS
+
+- Email **api-support@fbsdata.com** directly: *"I need to register an IDX application against WFRMLS / Washington County Board of Realtors. Agent Kayden Palmer, brokerage Element Real Estate Brokers LLC, license #11641681-SA."*
+- Or ask Kayden to email **his MLS support** (the link in his flexmls.com portal). Many MLSs route IDX requests through their own admin who then triggers the Spark side.
 
 ### 2. Send the credentials to whoever manages the deployment
 
