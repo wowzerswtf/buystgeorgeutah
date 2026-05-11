@@ -23,42 +23,42 @@ export default function ContactPage() {
           intro="Call goes straight to him. Text usually faster. Form below for the long version."
         />
 
-        <section className="bg-bone pb-28">
+        <section className="bg-[#0a0a0a] pb-28">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-5">
-                <div className="border-t hairline pt-8 space-y-10">
+                <div className="border-t border-white/[0.08] pt-10 space-y-10">
                   <div>
-                    <p className="eyebrow">Phone</p>
+                    <span className="tag-lime">Phone</span>
                     <a
                       href={agent.phoneHref}
-                      className="block mt-3 font-display text-4xl md:text-5xl tracking-[-0.02em] text-ink hover:text-sandstone-deep transition"
+                      className="block mt-5 display-caps text-3xl md:text-4xl text-white hover:text-lime-400 transition"
                     >
                       {agent.phone}
                     </a>
-                    <p className="mt-2 font-mono text-[12px] text-ink-muted">
+                    <p className="mt-2 font-mono text-[12px] text-white/55">
                       Answer in 15 min or less · 24/7 ok to text
                     </p>
                   </div>
 
                   <div>
-                    <p className="eyebrow">Email</p>
+                    <span className="tag-lime">Email</span>
                     <a
                       href={agent.emailHref}
-                      className="block mt-3 font-display text-2xl md:text-3xl tracking-[-0.02em] text-ink hover:text-sandstone-deep transition break-all"
+                      className="block mt-5 display-caps text-xl md:text-2xl text-white hover:text-lime-400 transition break-all"
                     >
                       {agent.email}
                     </a>
                   </div>
 
                   <div>
-                    <p className="eyebrow">Instagram</p>
-                    <div className="mt-3 space-y-1">
+                    <span className="tag-lime">Instagram</span>
+                    <div className="mt-5 space-y-1.5">
                       <a
                         href={social.instagramBusiness.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block font-mono text-base text-ink hover:text-sandstone-deep transition"
+                        className="block font-mono text-base text-white hover:text-lime-400 transition"
                       >
                         {social.instagramBusiness.handle}
                       </a>
@@ -66,7 +66,7 @@ export default function ContactPage() {
                         href={social.instagramPersonal.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block font-mono text-base text-ink-muted hover:text-sandstone-deep transition"
+                        className="block font-mono text-base text-white/65 hover:text-lime-400 transition"
                       >
                         {social.instagramPersonal.handle}
                       </a>

@@ -5,7 +5,7 @@ export const site = {
   domain: "buystgeorgeutah.com",
   tagline: "Connecting People with Places",
   description:
-    "St. George, Utah real estate with Kayden Palmer. Born and raised in Southern Utah. 144+ homes sold, 70+ five-star reviews. Buy, sell, build, and invest across St. George, Washington, Hurricane, Cedar City, La Verkin, Santa Clara, and Mesquite.",
+    "Born here. Raised here. 144 homes sold here. Kayden Palmer is Southern Utah's trusted real estate expert — St. George, Washington, Hurricane, Cedar City and beyond.",
 } as const;
 
 export const agent = {
@@ -13,14 +13,14 @@ export const agent = {
   lastName: "Palmer",
   fullName: "Kayden Palmer",
   title: "REALTOR®",
-  bioShort: "St. George born. St. George raised.",
+  bioShort: "Born here. Raised here. 144 homes sold here.",
   bioLong:
-    "Born and raised in Southern Utah, Kayden grew up in the canyons, on the trails, and on the streets he now sells. Real estate here isn't just business — it's personal. Whether you're moving across the country, picking out your first home, or building from the ground up, you get an agent who actually knows where to look, who to call, and what the deal is really worth.",
+    "Born and raised in Southern Utah, Kayden grew up in the canyons, on the trails, and on the streets he now sells. Real estate here isn't business — it's personal. Whether you're moving across the country, picking out your first home, or building from the ground up, you get an agent who actually knows where to look, who to call, and what the deal is really worth.",
   phone: "(435) 256-2101",
   phoneHref: "tel:+14352562101",
   email: "Kayden@elementreb.com",
   emailHref: "mailto:Kayden@elementreb.com",
-  headshot: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/kayden.jpg",
+  headshot: "/kayden.jpg",
   logoMark: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/officilalogo.png",
 } as const;
 
@@ -42,6 +42,20 @@ export const social = {
   },
 } as const;
 
+// Brand assets hosted on Kayden's R2 buckets.
+export const assets = {
+  logo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/officilalogo.png",
+  heroVideo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/vid1.mp4",
+  secondaryVideo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/vid2.mp4",
+  motoImage: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/moto1.jpg",
+  buyImage: "https://pub-935521d3cfcb470c96e59231470db2be.r2.dev/buyyy.png",
+  sellImage: "https://pub-935521d3cfcb470c96e59231470db2be.r2.dev/sell.png",
+  footerImage: "https://pub-935521d3cfcb470c96e59231470db2be.r2.dev/afooter.jpg",
+  cacheImage5: "https://pub-97eacfa7d019409baa18e5cd6727ecb3.r2.dev/NEW%20CACHE%20IMAGES/5.jpg",
+  cacheImage8: "https://pub-97eacfa7d019409baa18e5cd6727ecb3.r2.dev/NEW%20CACHE%20IMAGES/8.jpg",
+  cacheImage11: "https://pub-97eacfa7d019409baa18e5cd6727ecb3.r2.dev/NEW%20CACHE%20IMAGES/11.jpg",
+} as const;
+
 export const stats = [
   { label: "Homes Sold", value: "144+" },
   { label: "Five-Star Reviews", value: "70+" },
@@ -52,38 +66,35 @@ export const stats = [
 export const specialties = [
   {
     slug: "buy",
-    title: "Buying",
-    eyebrow: "01 / Find",
+    title: "Find Your Dream Home",
+    eyebrow: "Buy",
     blurb:
       "From your first walk-through to keys in hand. Local insight on neighborhoods, schools, water rights, and the stuff Zillow won't tell you.",
+    image: assets.buyImage,
   },
   {
     slug: "sell",
-    title: "Selling",
-    eyebrow: "02 / List",
+    title: "Sell for Top Dollar",
+    eyebrow: "Sell",
     blurb:
       "Pricing that moves and marketing that travels. Pre-list strategy, staging, photography, and aggressive distribution across the MLS and beyond.",
+    image: assets.sellImage,
   },
   {
     slug: "build",
     title: "New Construction",
-    eyebrow: "03 / Build",
+    eyebrow: "Build",
     blurb:
       "Builder relationships across Southern Utah and a representative in the room when you sign. Upgrade packages negotiated, lot premiums questioned.",
+    image: assets.cacheImage5,
   },
   {
     slug: "invest",
-    title: "Investment",
-    eyebrow: "04 / Invest",
+    title: "Grow Your Portfolio",
+    eyebrow: "Invest",
     blurb:
-      "Long-term holds, fix-and-flips, and short-term rental analysis modeled against actual STR data for the zip code, not optimism.",
-  },
-  {
-    slug: "vacation",
-    title: "Vacation Rentals",
-    eyebrow: "05 / Host",
-    blurb:
-      "Which HOAs allow nightly. Which don't. Which look like they do but pull the rug at year two. Know before you close.",
+      "Long-term holds, fix-and-flips, and short-term rental analysis modeled against actual STR data for the zip code — not optimism.",
+    image: assets.cacheImage11,
   },
 ] as const;
 

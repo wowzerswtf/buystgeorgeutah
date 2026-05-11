@@ -6,7 +6,7 @@ import { Container } from "@/components/site/Container";
 import { PageHeader } from "@/components/site/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Buy a Home in Southern Utah",
+  title: "Find Your Dream Home in Southern Utah",
   description:
     "Buying a home in St. George, Washington, Hurricane, or anywhere across Southern Utah. Local-first representation from Kayden Palmer.",
 };
@@ -70,21 +70,18 @@ export default function BuyPage() {
           intro="There's a version of buying a home where everything happens on time and nobody surprises you. That's the version I run."
         />
 
-        <section className="bg-bone py-20 md:py-28">
+        <section className="bg-[#0a0a0a] py-20 md:py-28">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-14">
               <div className="lg:col-span-5">
-                <p className="eyebrow">The Six Steps</p>
-                <h2 className="mt-4 font-display text-4xl md:text-5xl leading-[0.95] tracking-[-0.03em] text-ink">
-                  How a Kayden deal
-                  <br />
-                  <span className="italic font-light text-sandstone-deep">
-                    actually moves.
-                  </span>
+                <span className="tag-lime">The Six Steps</span>
+                <h2 className="mt-6 display-caps text-4xl md:text-5xl text-white">
+                  How a Kayden deal<br />
+                  <span className="text-lime-400">actually moves.</span>
                 </h2>
               </div>
               <div className="lg:col-span-7 lg:pt-6">
-                <p className="text-base md:text-lg leading-relaxed text-ink-muted">
+                <p className="text-base md:text-lg leading-relaxed text-white/65">
                   Real estate has too many moving parts to wing it. Here's
                   the same six-step process I've run 144+ times — fast when
                   the market demands it, careful when the deal does.
@@ -92,59 +89,56 @@ export default function BuyPage() {
               </div>
             </div>
 
-            <ol className="border-t border-l hairline">
-              {STEPS.map((s, i) => (
+            <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+              {STEPS.map((s) => (
                 <li
                   key={s.n}
-                  className={`grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 p-8 md:p-12 border-r border-b hairline ${
-                    i % 2 === 1 ? "bg-paper" : ""
-                  }`}
+                  className="glass rounded-2xl p-8 md:p-10 transition-all"
                 >
-                  <div className="md:col-span-2 font-display text-5xl md:text-6xl tracking-[-0.04em] text-sandstone-deep">
-                    {s.n}
+                  <div className="flex items-baseline justify-between">
+                    <div className="display-caps text-5xl md:text-6xl text-lime-400/80">
+                      {s.n}
+                    </div>
+                    <span className="tag-lime">Step</span>
                   </div>
-                  <div className="md:col-span-4">
-                    <h3 className="font-display text-3xl md:text-4xl tracking-[-0.02em] text-ink">
-                      {s.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-6">
-                    <p className="text-base leading-relaxed text-ink-soft">
-                      {s.body}
-                    </p>
-                  </div>
+                  <h3 className="mt-6 display-caps text-2xl md:text-3xl text-white">
+                    {s.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-white/70">
+                    {s.body}
+                  </p>
                 </li>
               ))}
             </ol>
           </Container>
         </section>
 
-        <section className="bg-ink text-cream py-20 md:py-28">
+        <section className="bg-[#0e0e0e] py-20 md:py-28 border-y border-white/[0.06]">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-5">
-                <p className="eyebrow text-cream/40">Out-of-State Buyers</p>
-                <h2 className="mt-4 font-display text-4xl md:text-5xl leading-[0.95] tracking-[-0.03em]">
-                  Buying from
-                  <br />
-                  <span className="italic font-light text-sandstone">
-                    far away.
-                  </span>
+                <span className="tag-lime">Out-of-State Buyers</span>
+                <h2 className="mt-6 display-caps text-4xl md:text-5xl text-white">
+                  Buying from<br />
+                  <span className="text-lime-400">far away.</span>
                 </h2>
-                <p className="mt-6 text-base leading-relaxed text-cream/70">
+                <p className="mt-6 text-base leading-relaxed text-white/65">
                   More than half of Southern Utah's buyers right now are
                   moving from somewhere else. Whole process can run remote
                   if it has to.
                 </p>
               </div>
               <div className="lg:col-span-7">
-                <ul className="space-y-5">
+                <ul className="space-y-3">
                   {OUT_OF_STATE.map((item, i) => (
-                    <li key={i} className="flex gap-6 border-b border-cream/10 pb-5">
-                      <span className="font-mono text-[12px] tracking-[0.18em] text-sandstone shrink-0">
+                    <li
+                      key={i}
+                      className="flex gap-6 glass rounded-xl p-5 transition-all"
+                    >
+                      <span className="font-mono text-[12px] tracking-[0.18em] text-lime-400 shrink-0">
                         0{i + 1}
                       </span>
-                      <span className="text-cream/90 leading-relaxed">
+                      <span className="text-white/85 leading-relaxed">
                         {item}
                       </span>
                     </li>
@@ -154,17 +148,11 @@ export default function BuyPage() {
             </div>
 
             <div className="mt-16 flex flex-wrap gap-4">
-              <Link
-                href="/search"
-                className="inline-flex items-center gap-3 bg-cream text-ink px-7 py-4 text-[12px] uppercase tracking-[0.18em] font-medium hover:bg-sandstone hover:text-cream transition-colors"
-              >
-                Start a search <span aria-hidden>→</span>
+              <Link href="/search" className="btn-lime">
+                Start a Search →
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 border border-cream/30 px-7 py-4 text-[12px] uppercase tracking-[0.18em] font-medium hover:bg-cream/10 transition"
-              >
-                Book the first call
+              <Link href="/contact" className="btn-ghost">
+                Book the First Call
               </Link>
             </div>
           </Container>

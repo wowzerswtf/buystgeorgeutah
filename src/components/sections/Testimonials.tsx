@@ -9,44 +9,59 @@ export function Testimonials() {
   const t = testimonials[active];
 
   return (
-    <section className="relative bg-ink text-cream py-28 md:py-40 overflow-hidden">
-      {/* Oversized quote mark */}
+    <section className="relative bg-[#0a0a0a] py-24 md:py-32 overflow-hidden">
+      {/* Decorative quote */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-20 right-4 md:right-16 font-display text-[40vw] md:text-[26vw] leading-[0.7] text-cream/[0.04] select-none"
+        className="pointer-events-none absolute -top-16 right-4 md:right-16 display-caps text-[40vw] md:text-[24vw] leading-[0.7] text-white/[0.03] select-none"
       >
         "
       </div>
 
       <Container className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-3">
-            <p className="eyebrow text-cream/50">V · Reviews</p>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl leading-[0.95] tracking-[-0.03em]">
-              Seventy-plus
-              <br />
-              <span className="italic font-light text-sandstone">
-                five-star reviews.
-              </span>
+          <div className="lg:col-span-4">
+            <span className="tag-lime">What Clients Say</span>
+            <h2 className="mt-6 display-caps text-4xl md:text-5xl text-white">
+              70+ five-star<br />
+              <span className="text-lime-400">reviews on Zillow.</span>
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-cream/60">
-              The full collection lives on Zillow, but here's the gist.
+            <p className="mt-6 text-sm leading-relaxed text-white/55">
+              A few that stand out — the full collection lives on Zillow.
             </p>
+
+            <div className="mt-10 flex items-center gap-1">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <svg
+                  key={i}
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="#a3e635"
+                  aria-hidden
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))}
+              <span className="ml-3 font-mono text-[12px] text-white/60">
+                5.0 · 70+ reviews
+              </span>
+            </div>
           </div>
 
-          <div className="lg:col-span-9">
+          <div className="lg:col-span-8">
             <blockquote className="relative">
               <p
                 key={active}
-                className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.15] tracking-[-0.02em] text-cream"
+                className="display text-2xl md:text-3xl lg:text-4xl text-white leading-[1.3]"
               >
-                {t.quote}
+                "{t.quote}"
               </p>
               <footer className="mt-10 flex items-center gap-6">
-                <div className="h-px w-12 bg-sandstone" aria-hidden />
+                <div className="h-px w-12 bg-lime-400" aria-hidden />
                 <div>
-                  <div className="font-medium text-cream">{t.name}</div>
-                  <div className="font-mono text-[12px] tracking-wide text-cream/60 mt-0.5">
+                  <div className="font-semibold text-white">{t.name}</div>
+                  <div className="font-mono text-[12px] tracking-wide text-white/55 mt-0.5">
                     {t.city}
                   </div>
                 </div>
@@ -61,12 +76,12 @@ export function Testimonials() {
                   aria-label={`Show review ${i + 1}`}
                   className={`h-px transition-all ${
                     i === active
-                      ? "w-16 bg-sandstone"
-                      : "w-10 bg-cream/20 hover:bg-cream/40"
+                      ? "w-16 bg-lime-400"
+                      : "w-10 bg-white/15 hover:bg-white/40"
                   }`}
                 />
               ))}
-              <span className="font-mono text-[11px] tracking-[0.18em] text-cream/40 ml-4">
+              <span className="font-mono text-[11px] tracking-[0.18em] text-white/35 ml-4">
                 {String(active + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
               </span>
             </div>

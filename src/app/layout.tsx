@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site-config";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
-});
 
 const geist = Geist({
   variable: "--font-geist",
@@ -42,13 +35,8 @@ export const metadata: Metadata = {
     title: `${site.name} — Kayden Palmer, REALTOR®`,
     description: site.description,
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "/",
-  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -57,11 +45,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${geist.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bone text-ink">
-        {children}
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

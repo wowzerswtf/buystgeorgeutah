@@ -8,29 +8,22 @@ export default function NotFound() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-bone grain py-40 md:py-56">
+        <section className="relative bg-[#0a0a0a] py-40 md:py-56">
           <Container>
-            <p className="eyebrow">404</p>
-            <h1 className="mt-5 font-display text-7xl md:text-9xl lg:text-[180px] leading-[0.88] tracking-[-0.04em] text-ink">
-              Off the
-              <br />
-              <span className="italic font-light text-sandstone-deep">map.</span>
+            <span className="tag-lime">404</span>
+            <h1 className="mt-6 display-caps text-6xl md:text-8xl lg:text-[160px] text-white">
+              Off the<br />
+              <span className="text-lime-400">map.</span>
             </h1>
-            <p className="mt-8 max-w-lg text-base md:text-lg text-ink-muted leading-relaxed">
+            <p className="mt-8 max-w-lg text-base md:text-lg text-white/65 leading-relaxed">
               The page you're after doesn't exist — or moved. Head home and
               start over, or call Kayden if you need a person.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 text-[12px] uppercase tracking-[0.18em] font-medium hover:bg-sandstone transition-colors"
-              >
-                Back to home →
+              <Link href="/" className="btn-lime">
+                Back to Home →
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 border border-ink/25 text-ink px-7 py-4 text-[12px] uppercase tracking-[0.18em] font-medium hover:bg-ink hover:text-cream transition-colors"
-              >
+              <Link href="/contact" className="btn-ghost">
                 Contact Kayden
               </Link>
             </div>

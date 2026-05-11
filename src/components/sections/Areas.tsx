@@ -1,112 +1,100 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/site/Container";
 import { areas } from "@/lib/areas";
+import { assets } from "@/lib/site-config";
 
-// Curated background gradients per area — each one its own personality.
-const AREA_GRADIENTS: Record<string, string> = {
-  "st-george":
-    "linear-gradient(135deg, #c87a4f 0%, #9b4624 60%, #5a2210 100%)",
-  washington:
-    "linear-gradient(160deg, #d99764 0%, #b25e2f 70%, #732d12 100%)",
-  hurricane:
-    "linear-gradient(140deg, #e4a25a 0%, #c66b3d 50%, #7a3018 100%)",
-  "santa-clara":
-    "linear-gradient(150deg, #b5896c 0%, #845030 50%, #4a2010 100%)",
-  ivins:
-    "linear-gradient(145deg, #c97d4e 0%, #6e3119 60%, #2a0e06 100%)",
-  "cedar-city":
-    "linear-gradient(155deg, #8a9077 0%, #5f6e4f 55%, #2f3826 100%)",
-  "la-verkin":
-    "linear-gradient(135deg, #d18154 0%, #8a4423 60%, #3e1808 100%)",
-  mesquite:
-    "linear-gradient(150deg, #d6a772 0%, #a87141 55%, #5d3417 100%)",
+// Map each area to a hero image. Cycles through Kayden's R2 cache images
+// + brand shots — replace per-area when better photography is available.
+const AREA_IMAGES: Record<string, string> = {
+  "st-george": assets.motoImage,
+  washington: assets.cacheImage8,
+  hurricane: assets.cacheImage5,
+  "santa-clara": assets.cacheImage11,
+  ivins: assets.buyImage,
+  "cedar-city": assets.sellImage,
+  "la-verkin": assets.footerImage,
+  mesquite: assets.cacheImage8,
 };
 
 export function Areas() {
   return (
-    <section className="relative bg-bone py-28 md:py-40">
+    <section className="relative bg-[#0a0a0a] py-24 md:py-32">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12 md:mb-16">
           <div className="lg:col-span-7">
-            <p className="eyebrow">II · Where</p>
-            <h2 className="mt-4 font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-[-0.03em] text-ink">
-              Eight markets,
-              <br />
-              <span className="italic font-light text-sandstone-deep">
-                one local.
-              </span>
+            <span className="tag-lime">Where We Work</span>
+            <h2 className="mt-6 display-caps text-4xl md:text-5xl lg:text-6xl text-white">
+              Eight markets,<br />
+              <span className="text-lime-400">one local.</span>
             </h2>
           </div>
           <div className="lg:col-span-5 lg:pt-8">
-            <p className="text-base md:text-lg leading-relaxed text-ink-muted">
+            <p className="text-base md:text-lg leading-relaxed text-white/65">
               Southern Utah isn't one market — it's a string of small ones,
-              each with their own micro-economy, HOAs, and unwritten rules.
+              each with its own micro-economy, HOAs, and unwritten rules.
               Pick a town to dig in.
             </p>
           </div>
         </div>
 
-        {/* Asymmetric grid: hero card spans 2 cols on lg */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-px bg-ink/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 md:gap-5">
           {areas.map((area, i) => {
             const span =
               i === 0
-                ? "sm:col-span-2 lg:col-span-3 lg:row-span-2 aspect-[4/5] lg:aspect-auto lg:min-h-[520px]"
+                ? "sm:col-span-2 lg:col-span-3 lg:row-span-2 aspect-[4/5] lg:aspect-auto lg:min-h-[540px]"
                 : "lg:col-span-3 aspect-[5/3]";
+            const img = AREA_IMAGES[area.slug] ?? assets.motoImage;
             return (
               <Link
                 key={area.slug}
                 href={`/areas/${area.slug}`}
-                className={`group relative overflow-hidden ${span}`}
-                style={{
-                  background: AREA_GRADIENTS[area.slug] ?? AREA_GRADIENTS["st-george"],
-                }}
+                className={`group relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-500 ${span}`}
               >
-                {/* Decorative SVG layer per card */}
-                <svg
+                <Image
+                  src={img}
+                  alt={`${area.name}, ${area.state}`}
+                  fill
+                  sizes={i === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+                  className="object-cover opacity-55 group-hover:opacity-75 group-hover:scale-105 transition-all duration-[1000ms]"
+                  unoptimized
+                />
+                <div
                   aria-hidden
-                  viewBox="0 0 600 400"
-                  preserveAspectRatio="xMidYMax slice"
-                  className="absolute inset-0 w-full h-full opacity-40 transition-transform duration-[1200ms] group-hover:scale-105"
-                >
-                  <path
-                    d="M0,400 L0,260 L80,240 L160,280 L240,220 L320,260 L420,210 L520,250 L600,230 L600,400 Z"
-                    fill="rgba(0,0,0,0.25)"
-                  />
-                  <path
-                    d="M0,400 L0,320 L60,310 L60,280 L160,280 L160,320 L260,320 L260,290 L360,290 L360,320 L480,320 L480,300 L600,300 L600,400 Z"
-                    fill="rgba(0,0,0,0.45)"
-                  />
-                </svg>
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.45) 45%, rgba(10,10,10,0.9) 100%)",
+                  }}
+                />
 
-                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between text-cream">
-                  <div>
-                    <p className="font-mono text-[11px] tracking-[0.16em] uppercase opacity-70">
-                      {area.eyebrow}
-                    </p>
-                  </div>
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between text-white">
+                  <span className="self-start bg-lime-400 px-2.5 py-1 rounded-lg text-[10px] tracking-[0.15em] text-black font-bold uppercase">
+                    {area.eyebrow}
+                  </span>
+
                   <div>
                     <h3
-                      className={`font-display tracking-[-0.02em] leading-[0.95] ${
+                      className={`display-caps tracking-[-0.01em] ${
                         i === 0
-                          ? "text-6xl md:text-7xl lg:text-8xl"
-                          : "text-4xl md:text-5xl"
+                          ? "text-5xl md:text-6xl lg:text-7xl"
+                          : "text-3xl md:text-4xl"
                       }`}
                     >
                       {area.name}
-                      <span className="opacity-60 font-light italic">
+                      <span className="text-lime-400 font-normal">
                         , {area.state}
                       </span>
                     </h3>
                     <p
-                      className={`mt-4 max-w-md text-cream/80 leading-relaxed ${
+                      className={`mt-3 max-w-md text-white/75 leading-relaxed ${
                         i === 0 ? "text-base md:text-lg" : "text-sm"
                       }`}
                     >
                       {area.blurb}
                     </p>
-                    <span className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] opacity-70 group-hover:opacity-100 group-hover:gap-3 transition-all">
-                      View homes <span aria-hidden>→</span>
+                    <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-lime-400 opacity-80 group-hover:opacity-100 group-hover:gap-3 transition-all">
+                      View homes →
                     </span>
                   </div>
                 </div>

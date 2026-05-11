@@ -48,45 +48,45 @@ export default async function AreaPage({
           intro={area.blurb}
         />
 
-        <section className="bg-bone -mt-12 pb-20">
+        <section className="bg-[#0a0a0a] -mt-12 pb-16 relative z-10">
           <Container>
-            <div className="shadow-[0_30px_80px_-30px_rgba(26,15,10,0.45)]">
-              <SearchBar variant="dark" />
+            <div className="lime-glow">
+              <SearchBar />
             </div>
           </Container>
         </section>
 
-        <section className="bg-bone py-20 md:py-28">
+        <section className="bg-[#0a0a0a] py-20 md:py-28">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-7">
-                <p className="eyebrow">About the area</p>
-                <p className="mt-5 font-display text-3xl md:text-4xl leading-[1.1] tracking-[-0.02em] text-ink">
+                <span className="tag-lime">About the Area</span>
+                <p className="mt-6 display text-2xl md:text-3xl text-white leading-[1.25]">
                   {area.longBlurb}
                 </p>
               </div>
               <div className="lg:col-span-5">
-                <div className="border-t hairline pt-8">
-                  <p className="eyebrow">Highlights</p>
-                  <ul className="mt-5 space-y-3">
+                <div className="glass rounded-2xl p-7">
+                  <span className="tag-lime">Highlights</span>
+                  <ul className="mt-5 space-y-3 border-t border-white/[0.06] pt-5">
                     {area.highlights.map((h) => (
                       <li
                         key={h}
-                        className="flex gap-4 border-b hairline pb-3 font-mono text-sm text-ink-soft"
+                        className="flex gap-4 font-mono text-sm text-white/75"
                       >
-                        <span className="text-sandstone-deep shrink-0">·</span>
+                        <span className="text-lime-400 shrink-0">▪</span>
                         {h}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-8">
                   <Link
                     href={`/search?city=${area.slug}`}
-                    className="inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 text-[12px] uppercase tracking-[0.18em] font-medium hover:bg-sandstone transition-colors"
+                    className="btn-lime"
                   >
-                    See homes in {area.name} <span aria-hidden>→</span>
+                    See Homes in {area.name} →
                   </Link>
                 </div>
               </div>
@@ -94,25 +94,28 @@ export default async function AreaPage({
           </Container>
         </section>
 
-        <section className="bg-paper py-20 md:py-28">
+        <section className="bg-[#0e0e0e] py-20 md:py-28 border-t border-white/[0.06]">
           <Container>
-            <p className="eyebrow">Nearby areas</p>
-            <h2 className="mt-3 font-display text-4xl md:text-5xl leading-[0.95] tracking-[-0.03em] text-ink">
-              Or explore somewhere else.
+            <span className="tag-lime">Nearby Areas</span>
+            <h2 className="mt-6 display-caps text-3xl md:text-4xl text-white">
+              Or explore<br />
+              <span className="text-lime-400">somewhere else.</span>
             </h2>
 
-            <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/10 border hairline">
+            <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {others.map((a) => (
                 <li key={a.slug}>
                   <Link
                     href={`/areas/${a.slug}`}
-                    className="block bg-paper hover:bg-bone transition-colors p-6 h-full group"
+                    className="block glass rounded-2xl p-6 h-full group transition-all"
                   >
-                    <p className="eyebrow">{a.eyebrow}</p>
-                    <h3 className="mt-3 font-display text-2xl tracking-[-0.02em] text-ink group-hover:text-sandstone-deep transition">
+                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-lime-400/80">
+                      {a.eyebrow}
+                    </span>
+                    <h3 className="mt-3 display-caps text-2xl text-white group-hover:text-lime-400 transition">
                       {a.name}, {a.state}
                     </h3>
-                    <p className="mt-3 text-sm text-ink-muted leading-relaxed line-clamp-3">
+                    <p className="mt-3 text-sm text-white/65 leading-relaxed line-clamp-3">
                       {a.blurb}
                     </p>
                   </Link>

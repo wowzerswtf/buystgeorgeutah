@@ -1,54 +1,44 @@
 @import "tailwindcss";
 
 /*
- * Editorial Desert — color tokens
- * Sun-bleached limestone bone, canyon-shadow ink, Navajo sandstone accents.
+ * Brand match for Kayden Palmer Real Estate:
+ * Dark theme · lime-400 accent · white-opacity glass layers.
  */
 @theme inline {
   /* Surfaces */
-  --color-bone: #f1e9da;
-  --color-bone-soft: #ebe1cf;
-  --color-paper: #f8f2e6;
-  --color-cream: #fbf6ec;
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-2: #1a1a1a;
+  --color-surface-3: #202020;
 
-  /* Ink */
-  --color-ink: #1a0f0a;
-  --color-ink-soft: #2a1a12;
-  --color-ink-muted: #5a463d;
-  --color-ink-faint: #9a8678;
-
-  /* Accents */
-  --color-sandstone: #c8623a;
-  --color-sandstone-deep: #9b4624;
-  --color-ember: #d97c43;
-  --color-juniper: #5f6e4f;
-  --color-sky: #6b88a3;
-  --color-sun: #e4a25a;
+  /* Accent */
+  --color-lime: #a3e635;     /* tailwind lime-400 */
+  --color-lime-soft: #bef264; /* lime-300 */
 
   /* Site mapping */
-  --color-background: var(--color-bone);
-  --color-foreground: var(--color-ink);
+  --color-background: var(--color-bg);
+  --color-foreground: #ffffff;
 
   /* Fonts */
-  --font-display: var(--font-fraunces);
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #f1e9da;
-  --foreground: #1a0f0a;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  color-scheme: dark;
 }
 
 html {
-  background: var(--color-bone);
-  color: var(--color-ink);
+  background: var(--color-bg);
+  color: #ffffff;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-bone);
-  color: var(--color-ink);
+  background: var(--color-bg);
+  color: #ffffff;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
   text-rendering: optimizeLegibility;
@@ -56,45 +46,101 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Display headings — Fraunces with soft optical sizing */
-.font-display {
-  font-family: var(--font-display), "Times New Roman", Times, serif;
-  font-feature-settings: "ss01", "ss02", "ss03";
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
-}
-
 .font-mono {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-feature-settings: "ss01";
 }
 
-/* Eyebrow / kicker label */
-.eyebrow {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.16em;
+/* Small uppercase tag — matches his "LIME PILL" pattern */
+.tag-lime {
+  display: inline-block;
+  background: #a3e635;
+  color: #000;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  line-height: 1;
 }
 
-/* Decorative grain texture (SVG noise, inlined data URI) */
-.grain {
-  position: relative;
-  isolation: isolate;
-}
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.06 0 0 0 0 0.04 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  z-index: 1;
+/* Small uppercase label (no fill) */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
 }
 
-/* Underline-on-hover animated link */
+/* Display: tight tracking, ALL-CAPS feel */
+.display {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.display-caps {
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+/* Glass card surface */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Lime button — matches his exact pattern */
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #a3e635;
+  color: #000;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.3s;
+}
+.btn-lime:hover {
+  background: #bef264;
+  box-shadow: 0 0 30px rgba(163, 230, 53, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Lime glow utility */
+.lime-glow {
+  box-shadow: 0 0 40px rgba(163, 230, 53, 0.25);
+}
+
+/* Linky underline anim */
 .linky {
   position: relative;
   display: inline-block;
@@ -116,50 +162,41 @@ body {
   transform-origin: left;
 }
 
-/* Section reveal animation — pure CSS, no JS, runs once */
+/* Reveal animation */
 @keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .rise {
-  animation: rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.rise-d1 { animation-delay: 0.08s; }
-.rise-d2 { animation-delay: 0.18s; }
-.rise-d3 { animation-delay: 0.32s; }
-.rise-d4 { animation-delay: 0.48s; }
-.rise-d5 { animation-delay: 0.66s; }
+.rise-d1 { animation-delay: 0.05s; }
+.rise-d2 { animation-delay: 0.15s; }
+.rise-d3 { animation-delay: 0.30s; }
+.rise-d4 { animation-delay: 0.45s; }
+.rise-d5 { animation-delay: 0.60s; }
 
-@keyframes drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(2%, -1%) scale(1.04); }
+@keyframes pulse-lime {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(163,230,53,0.4); }
+  50%      { box-shadow: 0 0 0 12px rgba(163,230,53,0); }
 }
-
-/* Hairline border helper */
-.hairline {
-  border-color: color-mix(in oklab, var(--color-ink) 10%, transparent);
+.pulse-dot {
+  animation: pulse-lime 2s ease-out infinite;
 }
 
-/* Selection */
 ::selection {
-  background: var(--color-sandstone);
-  color: var(--color-cream);
+  background: #a3e635;
+  color: #000;
 }
 
-/* Custom scrollbar (subtle) */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-bone-soft); }
+::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--color-ink) 25%, transparent);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
-  border: 2px solid var(--color-bone-soft);
+  border: 2px solid #0a0a0a;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklab, var(--color-ink) 50%, transparent);
+  background: rgba(163, 230, 53, 0.6);
 }

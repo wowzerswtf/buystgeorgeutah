@@ -7,41 +7,32 @@ const PRIMARY = [
   { href: "/search", label: "Search Listings" },
   { href: "/buy", label: "Buy" },
   { href: "/sell", label: "Sell" },
-  { href: "/about", label: "About Kayden" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 bg-ink text-cream overflow-hidden">
-      {/* Top decorative rule with serif kicker */}
-      <Container className="pt-24 pb-16">
+    <footer className="relative bg-[#0a0a0a] text-white overflow-hidden border-t border-white/[0.06]">
+      <Container className="pt-24 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-          {/* Brand block */}
+          {/* CTA block */}
           <div className="lg:col-span-5">
-            <div className="eyebrow text-cream/50">{site.tagline}</div>
-            <h2 className="mt-3 font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-[-0.02em]">
-              Let's talk
+            <span className="tag-lime">Let's Talk</span>
+            <h2 className="mt-6 display text-5xl md:text-6xl lg:text-7xl text-white">
+              Ready when
               <br />
-              <span className="italic text-sandstone">St. George.</span>
+              <span className="text-lime-400">you are.</span>
             </h2>
-            <p className="mt-6 max-w-md text-cream/70 leading-relaxed">
-              Whether you're scouting from across the country or already in town,
-              the next conversation is the easy part. Call, text, or DM —
-              {" "}
-              <span className="text-cream">{agent.phone}</span>.
+            <p className="mt-6 max-w-md text-white/60 leading-relaxed">
+              Whether you're scouting from across the country or already in
+              town, the next conversation is the easy part. Call, text, or DM.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={agent.phoneHref}
-                className="px-5 py-3 bg-cream text-ink text-[12px] uppercase tracking-[0.16em] font-medium hover:bg-sandstone hover:text-cream transition"
-              >
+              <a href={agent.phoneHref} className="btn-lime">
                 Call Kayden
               </a>
-              <a
-                href={agent.emailHref}
-                className="px-5 py-3 border border-cream/30 text-[12px] uppercase tracking-[0.16em] font-medium hover:bg-cream/10 transition"
-              >
+              <a href={agent.emailHref} className="btn-ghost">
                 Send a message
               </a>
             </div>
@@ -49,13 +40,13 @@ export function Footer() {
 
           {/* Areas */}
           <div className="lg:col-span-3">
-            <div className="eyebrow text-cream/40">Areas</div>
+            <div className="eyebrow">Areas</div>
             <ul className="mt-5 space-y-2.5">
               {areas.slice(0, 7).map((a) => (
                 <li key={a.slug}>
                   <Link
                     href={`/areas/${a.slug}`}
-                    className="text-[14px] text-cream/80 hover:text-sandstone transition linky"
+                    className="text-[14px] text-white/70 hover:text-lime-400 transition linky"
                   >
                     {a.name}, {a.state}
                   </Link>
@@ -64,15 +55,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Primary links */}
+          {/* Site */}
           <div className="lg:col-span-2">
-            <div className="eyebrow text-cream/40">Site</div>
+            <div className="eyebrow">Site</div>
             <ul className="mt-5 space-y-2.5">
               {PRIMARY.map((p) => (
                 <li key={p.href}>
                   <Link
                     href={p.href}
-                    className="text-[14px] text-cream/80 hover:text-sandstone transition linky"
+                    className="text-[14px] text-white/70 hover:text-lime-400 transition linky"
                   >
                     {p.label}
                   </Link>
@@ -81,14 +72,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact / Social */}
+          {/* Reach */}
           <div className="lg:col-span-2">
-            <div className="eyebrow text-cream/40">Reach</div>
+            <div className="eyebrow">Reach</div>
             <ul className="mt-5 space-y-2.5">
               <li>
                 <a
                   href={agent.phoneHref}
-                  className="font-mono text-[13px] text-cream/80 hover:text-sandstone transition"
+                  className="font-mono text-[13px] text-white/70 hover:text-lime-400 transition"
                 >
                   {agent.phone}
                 </a>
@@ -96,7 +87,7 @@ export function Footer() {
               <li>
                 <a
                   href={agent.emailHref}
-                  className="font-mono text-[13px] text-cream/80 hover:text-sandstone transition break-all"
+                  className="font-mono text-[13px] text-white/70 hover:text-lime-400 transition break-all"
                 >
                   {agent.email}
                 </a>
@@ -106,7 +97,7 @@ export function Footer() {
                   href={social.instagramBusiness.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-[13px] text-cream/80 hover:text-sandstone transition"
+                  className="font-mono text-[13px] text-white/70 hover:text-lime-400 transition"
                 >
                   {social.instagramBusiness.handle}
                 </a>
@@ -116,7 +107,7 @@ export function Footer() {
                   href={social.instagramPersonal.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-[13px] text-cream/80 hover:text-sandstone transition"
+                  className="font-mono text-[13px] text-white/70 hover:text-lime-400 transition"
                 >
                   {social.instagramPersonal.handle}
                 </a>
@@ -126,10 +117,10 @@ export function Footer() {
         </div>
 
         {/* Compliance bar */}
-        <div className="mt-20 pt-8 border-t border-cream/10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="mt-20 pt-8 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           <div className="md:col-span-2">
-            <div className="eyebrow text-cream/40">Compliance</div>
-            <p className="mt-3 font-mono text-[11px] leading-relaxed text-cream/50">
+            <div className="eyebrow">Compliance</div>
+            <p className="mt-3 font-mono text-[11px] leading-relaxed text-white/40">
               {agent.fullName} · {agent.title} · {brokerage.state} License #{brokerage.agentLicense}
               <br />
               {brokerage.name}
@@ -138,9 +129,9 @@ export function Footer() {
             </p>
           </div>
           <div className="md:text-right">
-            <div className="eyebrow text-cream/40">© {new Date().getFullYear()}</div>
-            <p className="mt-3 font-mono text-[11px] text-cream/50">
-              {site.name}.<br />Site by you, for the long haul.
+            <div className="eyebrow">© {new Date().getFullYear()}</div>
+            <p className="mt-3 font-mono text-[11px] text-white/40">
+              {site.name}
             </p>
           </div>
         </div>
@@ -149,9 +140,9 @@ export function Footer() {
       {/* Oversized decorative wordmark */}
       <div
         aria-hidden
-        className="pointer-events-none select-none absolute -bottom-12 md:-bottom-24 left-0 right-0 text-center font-display text-[28vw] md:text-[22vw] leading-none tracking-[-0.05em] text-cream/[0.03] whitespace-nowrap"
+        className="pointer-events-none select-none absolute -bottom-6 md:-bottom-12 left-0 right-0 text-center display-caps text-[28vw] md:text-[20vw] leading-none text-white/[0.025] whitespace-nowrap"
       >
-        St.&nbsp;George
+        ST.GEORGE
       </div>
     </footer>
   );
