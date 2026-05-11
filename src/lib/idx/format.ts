@@ -1,4 +1,5 @@
 import type { SparkListing, SparkStandardFields } from "./types";
+import { isDemoMode } from "./config";
 
 const USD = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -34,32 +35,27 @@ export function stableHash(s: string): number {
   return Math.abs(h);
 }
 
-// Production-only photo resolution. In demo mode the Spark CDN returns 404
-// on every photo URL, so this returns null and the UI renders a styled
-// placeholder instead of a broken <img>.
+// In demo mode Spark's CDN returns 404 on every photo URL, so we return
+// null/empty and the UI falls back to the styled <PhotoPlaceholder>. In
+// production every photo URL passes through untouched — same Spark CDN
+// hosts real MLS photos for production keys.
 export function listingHeroImage(l: SparkListing): string | null {
+  if (isDemoMode()) return null;
+
   const primary = l.StandardFields.PrimaryPhoto;
   if (primary?.UriLarge) return primary.UriLarge;
   if (primary?.Uri800) return primary.Uri800;
   if (primary?.Uri640) return primary.Uri640;
   const first = l.StandardFields.Photos?.[0];
-  const url =
-    first?.UriLarge ?? first?.Uri800 ?? first?.Uri640 ?? null;
-  // Skip Spark demo URLs — they all 404
-  if (url && url.includes("cdn.photos.sparkplatform.com")) return null;
-  if (url && url.includes("cdn.resize.sparkplatform.com")) return null;
-  return url;
+  return first?.UriLarge ?? first?.Uri800 ?? first?.Uri640 ?? null;
 }
 
 export function listingPhotoUrls(l: SparkListing, max = 12): string[] {
+  if (isDemoMode()) return [];
+
   const photos = l.StandardFields.Photos ?? [];
   return photos
     .slice(0, max)
     .map((p) => p.UriLarge ?? p.Uri800 ?? p.Uri640 ?? p.Uri300 ?? "")
-    .filter(Boolean)
-    .filter(
-      (url) =>
-        !url.includes("cdn.photos.sparkplatform.com") &&
-        !url.includes("cdn.resize.sparkplatform.com"),
-    );
+    .filter(Boolean);
 }
