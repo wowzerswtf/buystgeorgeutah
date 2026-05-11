@@ -64,13 +64,13 @@ body {
   line-height: 1;
 }
 
-/* Small uppercase label (no fill) */
+/* Small uppercase label (no fill) — boosted contrast for readability */
 .eyebrow {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
 }
 
 /* Display: tight tracking, ALL-CAPS feel */

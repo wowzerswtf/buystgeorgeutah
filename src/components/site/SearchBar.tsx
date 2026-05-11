@@ -22,68 +22,81 @@ export function SearchBar() {
   };
 
   const fieldClasses =
-    "appearance-none bg-transparent w-full font-mono text-[14px] tracking-wide text-white placeholder:text-white/35 focus:outline-none";
-  const labelClasses = "eyebrow block mb-2";
+    "appearance-none bg-transparent w-full text-[15px] font-medium text-white placeholder:text-white/45 focus:outline-none cursor-pointer";
+  const labelClasses =
+    "block mb-2 text-[10px] tracking-[0.2em] uppercase text-white/85 font-semibold";
 
   return (
     <form
       onSubmit={onSubmit}
-      className="grid grid-cols-2 md:grid-cols-5 bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden"
+      className="grid grid-cols-2 md:grid-cols-5 bg-[#141414] border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]"
     >
-      <div className="col-span-2 md:col-span-1 px-5 py-4 border-r border-white/[0.06]">
-        <label className={labelClasses}>City</label>
+      <div className="col-span-2 md:col-span-1 px-5 py-4 border-r border-white/10">
+        <label htmlFor="city" className={labelClasses}>
+          City
+        </label>
         <select
+          id="city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           className={fieldClasses}
         >
-          <option value="" className="bg-[#141414]">
+          <option value="" className="bg-[#141414] text-white">
             Anywhere
           </option>
           {areas.map((a) => (
-            <option key={a.slug} value={a.slug} className="bg-[#141414]">
+            <option key={a.slug} value={a.slug} className="bg-[#141414] text-white">
               {a.name}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="px-5 py-4 border-r border-white/[0.06] border-t md:border-t-0">
-        <label className={labelClasses}>Min Price</label>
+      <div className="px-5 py-4 border-r border-white/10 border-t md:border-t-0 border-white/10">
+        <label htmlFor="min-price" className={labelClasses}>
+          Min Price
+        </label>
         <input
+          id="min-price"
           type="text"
           inputMode="numeric"
-          placeholder="$"
+          placeholder="No min"
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
           className={fieldClasses}
         />
       </div>
 
-      <div className="px-5 py-4 border-r border-white/[0.06] border-t md:border-t-0">
-        <label className={labelClasses}>Max Price</label>
+      <div className="px-5 py-4 border-r border-white/10 border-t md:border-t-0">
+        <label htmlFor="max-price" className={labelClasses}>
+          Max Price
+        </label>
         <input
+          id="max-price"
           type="text"
           inputMode="numeric"
-          placeholder="$"
+          placeholder="No max"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
           className={fieldClasses}
         />
       </div>
 
-      <div className="px-5 py-4 border-r border-white/[0.06] border-t md:border-t-0">
-        <label className={labelClasses}>Beds</label>
+      <div className="px-5 py-4 border-r border-white/10 border-t md:border-t-0">
+        <label htmlFor="beds" className={labelClasses}>
+          Beds
+        </label>
         <select
+          id="beds"
           value={beds}
           onChange={(e) => setBeds(e.target.value)}
           className={fieldClasses}
         >
-          <option value="" className="bg-[#141414]">
+          <option value="" className="bg-[#141414] text-white">
             Any
           </option>
           {[1, 2, 3, 4, 5].map((n) => (
-            <option key={n} value={n} className="bg-[#141414]">
+            <option key={n} value={n} className="bg-[#141414] text-white">
               {n}+
             </option>
           ))}

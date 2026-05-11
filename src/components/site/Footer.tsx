@@ -117,10 +117,10 @@ export function Footer() {
         </div>
 
         {/* Compliance bar */}
-        <div className="mt-20 pt-8 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="mt-20 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           <div className="md:col-span-2">
             <div className="eyebrow">Compliance</div>
-            <p className="mt-3 font-mono text-[11px] leading-relaxed text-white/40">
+            <p className="mt-3 text-[12px] leading-relaxed text-white/65">
               {agent.fullName} · {agent.title} · {brokerage.state} License #{brokerage.agentLicense}
               <br />
               {brokerage.name}
@@ -130,9 +130,7 @@ export function Footer() {
           </div>
           <div className="md:text-right">
             <div className="eyebrow">© {new Date().getFullYear()}</div>
-            <p className="mt-3 font-mono text-[11px] text-white/40">
-              {site.name}
-            </p>
+            <p className="mt-3 text-[12px] text-white/65">{site.name}</p>
           </div>
         </div>
       </Container>
