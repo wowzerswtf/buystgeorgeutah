@@ -184,6 +184,13 @@ body {
   animation: pulse-lime 2s ease-out infinite;
 }
 
+/* Indeterminate progress bar — runs while the search transition is pending */
+@keyframes indeterminate {
+  0%   { transform: translateX(-100%); width: 40%; }
+  50%  { transform: translateX(50%);   width: 60%; }
+  100% { transform: translateX(200%);  width: 40%; }
+}
+
 ::selection {
   background: #a3e635;
   color: #000;

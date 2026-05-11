@@ -6,6 +6,7 @@ import { Container } from "@/components/site/Container";
 import { SearchBar } from "@/components/site/SearchBar";
 import { ListingGrid } from "@/components/listings/ListingGrid";
 import { DemoBanner } from "@/components/listings/DemoBanner";
+import { ScrollToResults } from "@/components/listings/ScrollToResults";
 import { searchListings } from "@/lib/idx/spark";
 import { isDemoMode } from "@/lib/idx/config";
 import { areas } from "@/lib/areas";
@@ -31,7 +32,7 @@ const USD = new Intl.NumberFormat("en-US", {
   currency: "USD",
   maximumFractionDigits: 0,
 });
-function fmtMoney(n?: number) {
+function fmt(n?: number) {
   return n ? USD.format(n) : null;
 }
 
@@ -43,30 +44,50 @@ export default async function SearchPage({
   const sp = await searchParams;
   const query = {
     city: toStr(sp.city),
+    propertyType: toStr(sp.propertyType),
     minPrice: toNum(sp.minPrice),
     maxPrice: toNum(sp.maxPrice),
     beds: toNum(sp.beds),
+    baths: toNum(sp.baths),
+    minSqft: toNum(sp.minSqft),
+    sortBy: toStr(sp.sortBy) as
+      | "price-asc"
+      | "price-desc"
+      | "newest"
+      | "sqft-desc"
+      | undefined,
   };
   const activeArea = areas.find((a) => a.slug === query.city);
   const hasFilters = Boolean(
-    query.city || query.minPrice || query.maxPrice || query.beds,
+    query.city ||
+      query.propertyType ||
+      query.minPrice ||
+      query.maxPrice ||
+      query.beds ||
+      query.baths ||
+      query.minSqft,
   );
   const { listings, configured, total } = await searchListings(query);
 
-  // Human-readable filter chips
+  // Human-readable chip list of what's filtered
   const chips: string[] = [];
   if (activeArea) chips.push(`${activeArea.name}, ${activeArea.state}`);
+  if (query.propertyType) chips.push(query.propertyType);
   if (query.minPrice && query.maxPrice)
-    chips.push(`${fmtMoney(query.minPrice)} – ${fmtMoney(query.maxPrice)}`);
-  else if (query.minPrice) chips.push(`From ${fmtMoney(query.minPrice)}`);
-  else if (query.maxPrice) chips.push(`Up to ${fmtMoney(query.maxPrice)}`);
+    chips.push(`${fmt(query.minPrice)} – ${fmt(query.maxPrice)}`);
+  else if (query.minPrice) chips.push(`From ${fmt(query.minPrice)}`);
+  else if (query.maxPrice) chips.push(`Up to ${fmt(query.maxPrice)}`);
   if (query.beds) chips.push(`${query.beds}+ bd`);
+  if (query.baths) chips.push(`${query.baths}+ ba`);
+  if (query.minSqft) chips.push(`${query.minSqft.toLocaleString()}+ sqft`);
 
   return (
     <>
       <Header />
       <main className="flex-1 bg-[#0a0a0a]">
-        {/* Compact title strip — sits under the fixed header */}
+        <ScrollToResults />
+
+        {/* Compact title */}
         <section className="pt-28 md:pt-32 pb-8 md:pb-10">
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -81,24 +102,6 @@ export default async function SearchPage({
                       ? "Matching homes"
                       : "Find Your Dream Home"}
                 </h1>
-                {chips.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {chips.map((c) => (
-                      <span
-                        key={c}
-                        className="inline-flex items-center px-3 py-1 rounded-md border border-white/15 bg-white/[0.04] font-mono text-[11px] tracking-[0.12em] uppercase text-white/85"
-                      >
-                        {c}
-                      </span>
-                    ))}
-                    <Link
-                      href="/search"
-                      className="inline-flex items-center px-3 py-1 rounded-md border border-white/10 hover:border-lime-400/50 hover:text-lime-400 font-mono text-[11px] tracking-[0.12em] uppercase text-white/55 transition"
-                    >
-                      × Clear
-                    </Link>
-                  </div>
-                )}
               </div>
               <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-white/55">
                 {configured
@@ -109,17 +112,35 @@ export default async function SearchPage({
           </Container>
         </section>
 
-        {/* Search bar — high up, lime glow */}
-        <section className="pb-10 md:pb-14 relative z-10">
+        {/* Search bar */}
+        <section className="pb-6 relative z-10">
           <Container>
             <div className="lime-glow">
               <SearchBar />
             </div>
+            {chips.length > 0 && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {chips.map((c) => (
+                  <span
+                    key={c}
+                    className="inline-flex items-center px-3 py-1 rounded-md border border-lime-400/40 bg-lime-400/5 font-mono text-[11px] tracking-[0.12em] uppercase text-lime-400"
+                  >
+                    {c}
+                  </span>
+                ))}
+                <Link
+                  href="/search"
+                  className="inline-flex items-center px-3 py-1 rounded-md border border-white/15 hover:border-white/40 font-mono text-[11px] tracking-[0.12em] uppercase text-white/60 hover:text-white transition"
+                >
+                  × Clear all
+                </Link>
+              </div>
+            )}
           </Container>
         </section>
 
         {/* Results */}
-        <section id="results" className="pb-24 md:pb-32 scroll-mt-24">
+        <section id="results" className="pt-10 pb-24 md:pb-32 scroll-mt-24">
           <Container>
             {isDemoMode() && configured && <DemoBanner />}
             <ListingGrid
@@ -128,7 +149,6 @@ export default async function SearchPage({
               total={total}
             />
 
-            {/* Area browse — only on the empty/unfiltered state to avoid clutter */}
             {!hasFilters && (
               <div className="mt-24">
                 <span className="tag-lime">Browse by Area</span>

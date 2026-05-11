@@ -72,9 +72,11 @@ export interface ListingsQuery {
   maxPrice?: number;
   beds?: number;
   baths?: number;
+  minSqft?: number;
+  maxSqft?: number;
   propertyType?: string;
   status?: string;
   page?: number;
   limit?: number;
-  sortBy?: "price-asc" | "price-desc" | "newest";
+  sortBy?: "price-asc" | "price-desc" | "newest" | "sqft-desc";
 }

@@ -8,6 +8,11 @@ import type {
   ListingsQuery,
 } from "./types";
 
+// Escape single quotes in user strings before interpolating into a RETS filter
+function esc(s: string): string {
+  return s.replace(/'/g, "''");
+}
+
 function buildFilter(q: ListingsQuery): string {
   const clauses: string[] = [];
 
@@ -17,7 +22,7 @@ function buildFilter(q: ListingsQuery): string {
   // Skip city filter in demo mode — demo data isn't from Utah, so filtering
   // by a Utah city name would always return zero results.
   if (!isDemoMode() && q.city && AREA_TO_MLS_CITY[q.city]) {
-    clauses.push(`City Eq '${AREA_TO_MLS_CITY[q.city]}'`);
+    clauses.push(`City Eq '${esc(AREA_TO_MLS_CITY[q.city])}'`);
   }
   if (q.minPrice && Number.isFinite(q.minPrice)) {
     clauses.push(`ListPrice Ge ${q.minPrice}`);
@@ -31,8 +36,17 @@ function buildFilter(q: ListingsQuery): string {
   if (q.baths && Number.isFinite(q.baths)) {
     clauses.push(`BathsTotal Ge ${q.baths}`);
   }
-  if (q.propertyType) {
-    clauses.push(`PropertyType Eq '${q.propertyType}'`);
+  if (q.minSqft && Number.isFinite(q.minSqft)) {
+    clauses.push(`BuildingAreaTotal Ge ${q.minSqft}`);
+  }
+  if (q.maxSqft && Number.isFinite(q.maxSqft)) {
+    clauses.push(`BuildingAreaTotal Le ${q.maxSqft}`);
+  }
+  // Property type — Spark uses PropertySubType for the friendly names
+  // (Single Family, Condominium, etc.). Skip in demo mode since demo data
+  // uses MLS-specific codes that won't match our UI labels.
+  if (!isDemoMode() && q.propertyType) {
+    clauses.push(`PropertySubType Eq '${esc(q.propertyType)}'`);
   }
   if (idxConfig.globalFilter) {
     clauses.push(idxConfig.globalFilter);
@@ -47,6 +61,8 @@ function buildOrderBy(sortBy: ListingsQuery["sortBy"]): string {
       return "ListPrice";
     case "price-desc":
       return "-ListPrice";
+    case "sqft-desc":
+      return "-BuildingAreaTotal";
     case "newest":
     default:
       return "-ModificationTimestamp";
