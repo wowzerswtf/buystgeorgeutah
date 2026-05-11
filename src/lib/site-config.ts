@@ -21,7 +21,7 @@ export const agent = {
   email: "Kayden@elementreb.com",
   emailHref: "mailto:Kayden@elementreb.com",
   headshot: "/kayden.jpg",
-  logoMark: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/officilalogo.png",
+  logoMark: "/logo.png",
 } as const;
 
 export const brokerage = {
@@ -42,9 +42,10 @@ export const social = {
   },
 } as const;
 
-// Brand assets hosted on Kayden's R2 buckets.
+// Brand assets — logo + headshot served locally for reliability,
+// other media hosted on Kayden's R2 buckets.
 export const assets = {
-  logo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/officilalogo.png",
+  logo: "/logo.png",
   heroVideo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/vid1.mp4",
   secondaryVideo: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/vid2.mp4",
   motoImage: "https://pub-0d816a334949494d8c7d08fe5484030b.r2.dev/moto1.jpg",

@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/lib/site-config";
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({
+  className = "",
+  size = "md",
+}: {
+  className?: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const px = size === "lg" ? 56 : size === "sm" ? 32 : 44;
   return (
     <Link
       href="/"
@@ -12,16 +19,17 @@ export function Logo({ className = "" }: { className?: string }) {
       <Image
         src={assets.logo}
         alt="Kayden Palmer Real Estate"
-        width={36}
-        height={36}
-        className="h-8 w-8 md:h-9 md:w-9 object-contain"
+        width={px}
+        height={px}
         priority
+        className="object-contain"
+        style={{ width: px, height: px }}
       />
       <span className="hidden sm:flex flex-col leading-none">
         <span className="text-[15px] font-semibold tracking-tight">
           Buy St. George
         </span>
-        <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/40 mt-1">
+        <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/55 mt-1">
           Kayden Palmer · UT
         </span>
       </span>
